@@ -20,12 +20,12 @@ import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> registerUser(@RequestBody @Valid UserRequestDTO userRequestDTO) throws UnsupportedEncodingException, MessagingException{
         User user = userRequestDTO.toModel();
         UserResponseDTO userSaved = userService.registerUser(user);
@@ -40,4 +40,10 @@ public class UserController {
             return "verify_fail";
         }
     }
+
+    @GetMapping("/teste")
+    public String teste(){
+        return "você está logado";
+    }
+
 }
