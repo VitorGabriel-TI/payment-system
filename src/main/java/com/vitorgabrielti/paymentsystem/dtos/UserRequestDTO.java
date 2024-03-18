@@ -21,8 +21,12 @@ public record UserRequestDTO(
     @NotNull
     @NotBlank
     @Size(min = 8, message = "A senha deve conter no minimo 8 caracteres")
-    String password) {
+    String password,
+    
+    @NotNull
+    @NotBlank
+    String role) {
     public User toModel(){
-        return new User(name, email, password);
+        return new User(name, email, password, role);
     }    
 }
